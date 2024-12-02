@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
   // Un temporizador para manejar la física (gravedad y ascenso/descenso).
 
   void startGravity({required bool upward}) {
+    //upward-hacia arriba
     // Maneja el movimiento del pájaro (ascender o descender).
     stopGravity();
     // Detiene cualquier temporizador anterior antes de iniciar uno nuevo.
@@ -46,7 +47,9 @@ class _HomePageState extends State<HomePage> {
     gravityTimer = Timer.periodic(Duration(milliseconds: 30), (timer) {
       // Crea un temporizador que se ejecuta cada 30 milisegundos.
       setState(() {
+        //setestate-establecer estado
         if (upward) {
+          // upward- para arriba
           birdYaxis -= 0.03;
           // Mueve el pájaro hacia arriba.
         } else {
@@ -143,13 +146,13 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (context) => AlertDialog(
         title: Text("Game Over"),
-        content: Text("Try again!"),
+        content: Text("Try again!"), //contenido
         actions: [
           TextButton(
             onPressed: () {
               resetGame();
               // Reinicia el juego cuando el jugador presiona "Restart".
-              Navigator.pop(context);
+              Navigator.pop(context); // sirve para salir de la ventana
             },
             child: Text("Restart"),
           ),
@@ -161,6 +164,7 @@ class _HomePageState extends State<HomePage> {
   void resetGame() {
     // Reinicia el juego.
     setState(() {
+      //establecer un estado- setstate
       birdYaxis = 0;
       // Reinicia la posición del pájaro.
 
@@ -180,8 +184,10 @@ class _HomePageState extends State<HomePage> {
     // Construye la interfaz gráfica del juego.
     return GestureDetector(
       onTapDown: (_) {
+        // onTpaDown- al presionar hacia abajo
         // Detecta cuando el jugador toca la pantalla.
         if (!gameHasStarted) {
+          // !-negar una condicion
           startGame();
           // Inicia el juego si no ha comenzado.
         }
@@ -194,12 +200,14 @@ class _HomePageState extends State<HomePage> {
         // Hace que el pájaro descienda.
       },
       child: Scaffold(
+        //andamio
         body: Column(
           children: [
             Expanded(
-              flex: 2,
+              flex: 2, // felx-doblar
               // La parte superior ocupa 2/3 de la pantalla.
               child: Stack(
+                // stack-pila
                 children: [
                   AnimatedContainer(
                     alignment: Alignment(0, birdYaxis),
